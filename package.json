@@ -18,5 +18,22 @@
     "mocha": "^3.4.2",
     "remove-punctuation": "0.0.4",
     "underscore": "^1.8.3"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chadananda/wordlevel.git"
+  },
+  "keywords": [
+    "word",
+    "frequency",
+    "word",
+    "distribution",
+    "nlp",
+    "parse"
+  ],
+  "bugs": {
+    "url": "https://github.com/chadananda/wordlevel/issues"
+  },
+  "homepage": "https://github.com/chadananda/wordlevel#readme"
 }
