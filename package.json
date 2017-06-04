@@ -1,0 +1,22 @@
+{
+  "name": "wordlevel",
+  "version": "1.0.0",
+  "description": "simple tool for lookup up word frequency with basic lemma stemming",
+  "main": "wordlevel.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "Chad Jones <chadananda@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.0.1",
+    "compromise": "^10.5.0",
+    "javascript-lemmatizer": "0.0.2",
+    "mocha": "^3.4.2",
+    "remove-punctuation": "0.0.4",
+    "underscore": "^1.8.3"
+  }
+}
