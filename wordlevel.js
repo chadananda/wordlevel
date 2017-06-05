@@ -77,14 +77,50 @@ class Wordlevel {
     let freq = 0
     let lemma = this.normalize_word(word, pos)
     if (lemma.length>0) freq = this.lemmafreq[lemma] || 0
-    //console.log('frequency', word, freq)
     return freq
   }
 
   level(word, pos) {
-    let freq = this.frequency(word, pos)
     // ratio to percentage rounded to first decimal
-    return Math.round(((freq / this.lemmacount) * 100)*10)/10
+    let level = Math.round(((this.frequency(word, pos) / this.lemmacount) * 100)*10)/10
+    return level
+  }
+
+  // returns the level at 98% of these words
+  block_level(str) {
+    var words = this.parse_frequency_list(str)
+    let wordcount = words.length
+    let top = wordcount - Math.round(wordcount/50)
+    let word = words[top-1]
+    return word.level
+  }
+
+  // returns the top 2% words
+  block_topwords(str) {
+    var words = this.parse_frequency_list(str)
+    let wordcount = words.length
+    let top = wordcount - Math.round(wordcount/50)
+    let topwords = words.slice(top-1)
+    return topwords
+  }
+
+  parse_frequency_list(str){
+    var text = this.parse_str(str)
+    var list = {}
+    var sortedlist = []
+    let that = this
+    text.forEach((word)=> {
+      let level = that.level(word.lemma, word.pos)
+      if (!list[word.lemma]) list[word.lemma] = {word: word.lemma, count: 1, level: level, percent: Math.round(level)}
+      else list[word.lemma].count++
+    })
+    // copy over into a sorted array
+    for (var word in list) {
+      if (list.hasOwnProperty(word)) sortedlist.push(list[word])
+    }
+    // sort array by level
+    sortedlist.sort((a, b) => a.level-b.level)
+    return sortedlist
   }
 
 
@@ -97,38 +133,9 @@ class Wordlevel {
       let lemma = that.normalize_word(word)
       if (lemma) result[lemma] = index
     })
-    console.log('Prepared lemma frequency index with ', Object.keys(result).length, 'keys')
+    //console.log('Prepared lemma frequency index with ', Object.keys(result).length, 'keys')
     return result
   }
-
-
-
-
-//   isSATword (word) {
-//     word = word.toLowerCase().trim();
-//     return (this.sat[word]===true);
-//   }
-//   isTOEFLword (word) {
-//     word = word.toLowerCase().trim();
-//     return (this.toefl[word]===true);
-//   }
-//   isTestword (word) {
-//     word = word.toLowerCase().trim();
-//     return (this.allwords[word]===true);
-//   }
-//   satWordsList () {
-//     return Object.keys(this.sat);
-//   }
-//   toeflWordsList () {
-//     return Object.keys(this.sat);
-//   }
-//   allWordsList () {
-//     let allWordsList= Array.concat(this.satWords(), this.toeflWord());
-//     allWordsList= Array.from(new Set(allWordsList));
-//     return allWordsList;
-//   }
-//
-//
 
 }
 

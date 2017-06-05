@@ -1,6 +1,6 @@
 {
   "name": "wordlevel",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "simple tool for lookup up word frequency with basic lemma stemming",
   "main": "wordlevel.js",
   "directories": {

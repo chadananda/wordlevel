@@ -80,6 +80,30 @@ describe("Word Frequency Tests", function() {
     it("'Perplexed' should have a level of 18.8%", function() {
       expect( wordlevel.level('Perplexed')).to.equal(18.8)
     })
+    it("'Diabolical' should have a level of 33.6%", function() {
+      expect( wordlevel.level('Diabolical')).to.equal(33.6)
+    })
+    it("'Missive' should have a level of 42.6%", function() {
+      expect( wordlevel.level('Missive')).to.equal(42.6)
+    })
+    it("'Painstaking' should have a level of 43%", function() {
+      expect( wordlevel.level('Painstaking')).to.equal(43)
+    })
+
   })
+
+  describe("Block of words level and top words analysis", function() {
+    var wordlevel = new Wordlevel('en')
+    wordlevel.frequency('') // initialize index
+    it("'To be or not to be, that is the question' should have top level of 11.3", function() {
+      expect( wordlevel.block_level('To be or not to be, that is the question')).to.equal(11.3)
+    })
+    it("'To be or not to be, that is the question' should have one top word, 'question'", function() {
+      var result = wordlevel.block_topwords('To be or not to be, that is the question')
+      expect(result.length).to.equal(1)
+      expect(result[0].word).to.equal('question')
+    })
+  })
+
 
 })
