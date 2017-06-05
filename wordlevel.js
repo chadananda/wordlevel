@@ -96,7 +96,7 @@ class Wordlevel {
   }
 
   // returns the top 2% words
-  block_topwords(str) {
+  topwords(str) {
     var words = this.parse_frequency_list(str)
     let wordcount = words.length
     let top = wordcount - Math.round(wordcount/50)
@@ -111,8 +111,8 @@ class Wordlevel {
     let that = this
     text.forEach((word)=> {
       let level = that.level(word.lemma, word.pos)
-      if (!list[word.lemma]) list[word.lemma] = {word: word.lemma, count: 1, level: level, percent: Math.round(level)}
-      else list[word.lemma].count++
+      if (!list[word.lemma]) list[word.lemma] = {word: word.lemma, count: 1, level: level}
+       else list[word.lemma].count++
     })
     // copy over into a sorted array
     for (var word in list) {

@@ -99,7 +99,7 @@ describe("Word Frequency Tests", function() {
       expect( wordlevel.block_level('To be or not to be, that is the question')).to.equal(11.3)
     })
     it("'To be or not to be, that is the question' should have one top word, 'question'", function() {
-      var result = wordlevel.block_topwords('To be or not to be, that is the question')
+      var result = wordlevel.topwords('To be or not to be, that is the question')
       expect(result.length).to.equal(1)
       expect(result[0].word).to.equal('question')
     })
