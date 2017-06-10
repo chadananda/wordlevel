@@ -2,9 +2,13 @@
 'use strict'
 
 
-var nlp = require('compromise'); // for parsing and NLP
-// var _ = require('underscore');
-var removePunctuation = require('remove-punctuation');
+var nlp = require('compromise') // for parsing and NLP
+// var _ = require('underscore')
+var removePunctuation = require('remove-punctuation')
+var Lemmatizer_en = require("javascript-lemmatizer")
+var freq_en = require('./freq_list_en')
+
+
 
 
 
@@ -17,11 +21,17 @@ class Wordlevel {
     this.lemmatizer = {}
     //this.lemmafreq = {}
     if (lang==='en') {
-      let Lemmatizer = require("javascript-lemmatizer")
-      this.lemmatizer = new Lemmatizer()
+      this.lemmatizer = new Lemmatizer_en()
+      this.list = freq_en
     }
-    let that = this
-    try { this.list = require('./freq_list_'+lang) } catch(e) { that.list = [] }
+    else if (lang==='fa') {
+      this.lemmatizer = {} //new Lemmatizer_en()
+      this.list = [] //freq_en
+    }
+    else if (lang==='ar') {
+      this.lemmatizer = {} //new Lemmatizer_en()
+      this.list = [] //freq_en
+    }
   }
 
   normalize_word(word, pos) {
